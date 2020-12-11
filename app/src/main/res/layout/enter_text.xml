@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    tools:context=".EnterText">
+
+    <EditText
+        android:id="@+id/edit"
+        style="@android:style/Widget.DeviceDefault.Light.AutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:clickable="false"
+        android:gravity="start"
+        android:inputType="textCapSentences|textMultiLine"
+        android:padding="20dp"
+        tools:ignore="Autofill,LabelFor" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/edit"
+        android:layout_above="@id/button_attach"
+        android:maxWidth="100dp"
+        android:maxHeight="500dp"
+        android:scaleType="fitCenter"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/delete_photo"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignTop="@id/image_view"
+        android:background="@drawable/clear"
+        android:layout_alignEnd="@id/image_view"
+        android:visibility="invisible"
+        android:backgroundTint="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/button_attach"
+        android:onClick="onClick"
+        android:text="@string/attach"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:backgroundTint="?attr/colorPrimaryDark"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:layout_width="160dp"
+        android:layout_height="70dp"/>
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="?attr/colorPrimaryDark"
+        android:foreground="@drawable/delete"
+        android:onClick="onClick"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:text="@string/save"
+        android:onClick="onClick"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:backgroundTint="?attr/colorPrimaryDark"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="160dp"
+        android:layout_height="70dp"/>
+
+</RelativeLayout>

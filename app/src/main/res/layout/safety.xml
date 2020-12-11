@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    tools:context=".EnterText">
+
+    <Button
+        android:id="@+id/add_password"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/colorWhite"
+        android:onClick="onClick"
+        android:text="@string/set_password"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/change_password"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/add_password"
+        android:backgroundTint="@color/colorWhite"
+        android:onClick="onClick"
+        android:text="@string/change_password"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/delete_password"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/change_password"
+        android:backgroundTint="@color/colorWhite"
+        android:onClick="onClick"
+        android:text="@string/delete_password"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

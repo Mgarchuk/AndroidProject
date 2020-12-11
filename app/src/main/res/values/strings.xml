@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">BigNotes</string>
+    <string name="hello_marina">Hello Marina!</string>
+    <string name="marina">Marina</string>
+    <string name="plus">+</string>
+    <string name="notes">заметки</string>
+    <string name="tasks">задачи</string>
+    <string name="save">сохранить</string>
+    <string name="attach">прикрепить</string>
+    <string name="enter_task">введите задачу</string>
+    <string name="search_task">поиск задачи</string>
+    <string name="search_note">поиск заметки</string>
+    <string name="safety">Безопасность</string>
+    <string name="open">Открыть</string>
+    <string name="search_in_internet">Выход в интернет</string>
+    <string name="set_password">настроить пароль</string>
+    <string name="change_password">изменить пароль</string>
+    <string name="delete_password">уалить пароль</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="zero">0</string>
+    <string name="delete_all">удалить все записи</string>
+    <string name="delete_digit"><![CDATA[<]]></string>
+    <string name="four_dots">....</string>
+    <string name="codeforces">Загрузить блог с codeforces</string>
+</resources>

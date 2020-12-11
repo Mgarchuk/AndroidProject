@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/safety"
+        android:orderInCategory="1"
+        android:title="@string/safety" />
+    <item
+        android:id="@+id/internet"
+        android:orderInCategory="2"
+        android:title="@string/search_in_internet" />
+    <item
+        android:id="@+id/delete_all"
+        android:orderInCategory="3"
+        android:title="@string/delete_all" />
+</menu>

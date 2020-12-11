@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:rowCount="12"
+    android:columnCount="1">
+
+    <ImageView
+        android:id="@+id/pic_1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_1" />
+
+
+    <ImageView
+        android:id="@+id/pic_2"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_2" />
+
+    <ImageView
+        android:id="@+id/pic_3"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_3" />
+
+    <ImageView
+        android:id="@+id/pic_4"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_4" />
+
+    <ImageView
+        android:id="@+id/pic_5"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_5" />
+
+    <ImageView
+        android:id="@+id/pic_6"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_6" />
+
+    <ImageView
+        android:id="@+id/pic_7"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_7" />
+
+    <ImageView
+        android:id="@+id/pic_8"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_8" />
+
+    <ImageView
+        android:id="@+id/pic_9"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClick"
+        android:src="@drawable/pic_9" />
+
+
+</GridLayout>
+</ScrollView>

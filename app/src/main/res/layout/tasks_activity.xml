@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/task_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keyboardNavigationCluster="false"
+    android:padding="0dp">
+
+    <EditText
+        android:id="@+id/search_edit"
+        style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_toStartOf="@id/button_search_task"
+        android:hint="@string/search_task"
+        android:inputType="text"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:singleLine="false"
+        tools:ignore="Autofill,LabelFor" />
+
+    <Button
+        android:id="@+id/button_clear"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@id/search_edit"
+        android:background="@drawable/clear"
+        android:onClick="onClick"
+        android:backgroundTint="?attr/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/button_search_task"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/search"
+        android:backgroundTint="?attr/colorPrimaryDark" />
+
+
+    <GridView
+        android:id="@+id/grid_view_checker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_search_task"
+        android:orientation="horizontal" />
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/grid_view_checker"
+        android:layout_toStartOf="@id/button_ok"
+        android:autoSizeTextType="none"
+        android:hint="@string/enter_task"
+        android:inputType="text"
+        tools:ignore="LabelFor"
+        android:autofillHints="@string/enter_task" />
+
+    <Button
+        android:id="@+id/button_ok"
+        android:onClick="onClick"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/grid_view_checker"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/ok"
+        android:backgroundTint="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/show_tasks"
+        android:layout_width="195dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:padding="5dp"
+        android:text="@string/tasks"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/show_notes"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="195dp"
+        android:layout_height="70dp"
+        android:onClick="onClick"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:padding="5dp"
+        android:text="@string/notes"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+</RelativeLayout>
