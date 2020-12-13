@@ -2,10 +2,12 @@ package com.example.bignotesproject;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -131,39 +134,66 @@ public class TasksActivity extends AppCompatActivity  implements View.OnClickLis
                 R.layout.set_tasks, tasks);
         tasksList.setAdapter(adapter);
 
-        tasksList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        tasksList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+            public boolean onItemLongClick(AdapterView<?> parent, View v, final int position, long id)
             {
-                DBHelper dataBaseHelper = new DBHelper(TasksActivity.this);
 
-                SQLiteDatabase database = dbHelper.getWritableDatabase();
-                Cursor cursor = database.query(DBHelper.TABLE_TASKS, null, null,
-                        null, null, null, null);
+                LayoutInflater li = LayoutInflater.from(TasksActivity.this);
+                View promptsView = li.inflate(R.layout.delete_dialog, null);
 
-                if (cursor.moveToFirst()) {
-                    int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
-                    int textIndex = cursor.getColumnIndex(DBHelper.KEY_TEXT);
-                    int num = 0;
-                    do {
-                        int id_index = cursor.getInt(idIndex);
-                        String text_index = cursor.getString(textIndex);
-                        if (num == (position)) {
-                            database.delete(DBHelper.TABLE_TASKS, DBHelper.KEY_ID + "= ?",
-                                    new String[] {Integer.toString(id_index)});
-                            show_added();
-                            break;
-                        }
-                        num++;
-                    } while (cursor.moveToNext());
-                }
+                AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(TasksActivity.this);
+                mDialogBuilder.setView(promptsView);
+                // final EditText userInput = promptsView.findViewById(R.id.input_text);
+
+                mDialogBuilder.setCancelable(false)
+                        .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                deleteTask(position);
+                            }
+                        });
+
+                mDialogBuilder.create().show();
 
 
-                cursor.close();
-                dataBaseHelper.close();
+                return true;
             }
         });
 
+    }
+
+    public void deleteTask(int pos) {
+        DBHelper dataBaseHelper = new DBHelper(TasksActivity.this);
+
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        Cursor cursor = database.query(DBHelper.TABLE_TASKS, null, null,
+                null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
+            int textIndex = cursor.getColumnIndex(DBHelper.KEY_TEXT);
+            int num = 0;
+            do {
+                int id_index = cursor.getInt(idIndex);
+                String text_index = cursor.getString(textIndex);
+                if (num == (pos)) {
+                    database.delete(DBHelper.TABLE_TASKS, DBHelper.KEY_ID + "= ?",
+                            new String[] {Integer.toString(id_index)});
+                    show_added();
+                    break;
+                }
+                num++;
+            } while (cursor.moveToNext());
+        }
+
+
+        cursor.close();
+        dataBaseHelper.close();
     }
 
     @Override

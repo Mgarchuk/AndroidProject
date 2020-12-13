@@ -1,14 +1,17 @@
 package com.example.bignotesproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -111,6 +114,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showNote();
             }
         });
+
+        notesList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View v, final int position, long id)
+            {
+                LayoutInflater li = LayoutInflater.from(MainActivity.this);
+                View promptsView = li.inflate(R.layout.delete_dialog, null);
+
+                AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                mDialogBuilder.setView(promptsView);
+                // final EditText userInput = promptsView.findViewById(R.id.input_text);
+
+                mDialogBuilder.setCancelable(false)
+                        .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                deleteNote(position);
+                            }
+                        });
+
+                mDialogBuilder.create().show();
+                return true;
+            }
+        });
+    }
+
+    public void deleteNote(int pos) {
+        DBHelper dataBaseHelper = new DBHelper(MainActivity.this);
+
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        Cursor cursor = database.query(DBHelper.TABLE_NOTES, null, null,
+                null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
+            int textIndex = cursor.getColumnIndex(DBHelper.KEY_TEXT);
+            int num = 0;
+            do {
+                int id_index = cursor.getInt(idIndex);
+                String text_index = cursor.getString(textIndex);
+                if (num == (pos)) {
+                    database.delete(DBHelper.TABLE_NOTES, DBHelper.KEY_ID + "= ?",
+                            new String[] {Integer.toString(id_index)});
+                    notes.remove(num);
+                    create_adapter(notes);
+                    break;
+                }
+                num++;
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        dataBaseHelper.close();
     }
 
 
