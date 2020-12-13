@@ -124,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(MainActivity.this);
                 mDialogBuilder.setView(promptsView);
-                // final EditText userInput = promptsView.findViewById(R.id.input_text);
 
                 mDialogBuilder.setCancelable(false)
                         .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {

@@ -121,6 +121,8 @@ public class EnterText extends AppCompatActivity implements View.OnClickListener
                             button_delete_photo.setVisibility(View.VISIBLE);
                         else
                             button_delete_photo.setVisibility(View.INVISIBLE);
+
+                        pic_index = 0;
                         break;
                     }
                     num++;

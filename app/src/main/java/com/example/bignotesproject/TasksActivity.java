@@ -134,10 +134,42 @@ public class TasksActivity extends AppCompatActivity  implements View.OnClickLis
                 R.layout.set_tasks, tasks);
         tasksList.setAdapter(adapter);
 
+        tasksList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, final int position, long id)
+            {
+
+                LayoutInflater li = LayoutInflater.from(TasksActivity.this);
+                View promptsView = li.inflate(R.layout.change_dialog, null);
+
+                AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(TasksActivity.this);
+                mDialogBuilder.setView(promptsView);
+                final EditText userInput = promptsView.findViewById(R.id.input_text);
+
+                mDialogBuilder.setCancelable(false)
+                        .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("Change", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                changeTask(position, userInput.getText().toString());
+                            }
+                        });
+
+                mDialogBuilder.create().show();
+
+            }
+        });
+
+
+
         tasksList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View v, final int position, long id)
             {
+
 
                 LayoutInflater li = LayoutInflater.from(TasksActivity.this);
                 View promptsView = li.inflate(R.layout.delete_dialog, null);
@@ -164,6 +196,44 @@ public class TasksActivity extends AppCompatActivity  implements View.OnClickLis
                 return true;
             }
         });
+
+    }
+
+    public void changeTask(int pos, String text) {
+        dbHelper = new DBHelper(this);
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        Cursor cursor = database.query(DBHelper.TABLE_TASKS, null, null,
+                null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
+            int textIndex = cursor.getColumnIndex(DBHelper.KEY_TEXT);
+            int num = 0;
+            do {
+                int id_index = cursor.getInt(idIndex);
+                String text_index = cursor.getString(textIndex);
+
+                if (num == (pos)) {
+                    if (!text.equals("")) {
+                        contentValues.put(DBHelper.KEY_TEXT, text);
+                        database.update(DBHelper.TABLE_TASKS, contentValues,
+                                DBHelper.KEY_ID + "= ?",
+                                new String[]{Integer.toString(id_index)});
+                    } else {
+                        database.delete(DBHelper.TABLE_TASKS, DBHelper.KEY_ID + "= ?",
+                                new String[]{Integer.toString(id_index)});
+                    }
+                    show_added();
+                    return;
+
+                }
+                num++;
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
 
     }
 

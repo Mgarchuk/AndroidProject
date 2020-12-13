@@ -30,4 +30,6 @@
     <string name="delete_digit"><![CDATA[<]]></string>
     <string name="four_dots">....</string>
     <string name="codeforces">Загрузить блог с codeforces</string>
+    <string name="sure">Are you sure you want to delete?</string>
+    <string name="change">Изменение задачи</string>
 </resources>
